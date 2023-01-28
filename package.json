@@ -1,17 +1,25 @@
 {
-  "dependencies": {
-    "discord.js": "14.7.1",
-    "dotenv": "16.0.3",
-    "glob": "7.2.0"
-  },
-  "name": "onikeeper",
+  "name": "discordbot",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xbeedx/DiscordBot.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "bugs": {
+    "url": "https://github.com/xbeedx/DiscordBot/issues"
+  },
+  "homepage": "https://github.com/xbeedx/DiscordBot#readme",
+  "dependencies": {
+    "discord.js": "14.7.1",
+    "dotenv": "16.0.3",
+    "glob": "7.2.0"
+  }
 }
