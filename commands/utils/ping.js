@@ -2,13 +2,11 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: "ping",
     description: 'Command ping!' ,
-    run: (client,message,args) => {
-        message.channel.send(`🏓 Pong!\nLatency: \`${Date.now() - message.createdTimestamp}ms\`\nAPI Latency: \`${client.ws.ping}ms\``);
-    },
     runSlash: (client,interaction) => {
         const embed = new EmbedBuilder()
         .setTitle('🏓 Pong!')
         .setThumbnail(client.user.displayAvatarURL())
+        //if only one field => .addField('Latency', client.ws.ping, true);
         .addFields(
             {name: 'Latency', value:`\`${Date.now() - interaction.createdTimestamp}ms\``, inline: true},
             {name: 'API Latency', value:`\`${client.ws.ping}ms\``, inline: true},

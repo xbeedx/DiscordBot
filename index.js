@@ -13,6 +13,7 @@ const client = new Client({intents: [
 ['CommandUtil','EventUtil'].forEach(handler => {require(`./utils/handlers/${handler}`)(client)});
 
 client.commands = new Collection();
+client.commandsSlash = new Collection();
 
 //logs
 process.on('exit', code => {console.log(`process stopped with the code : ${code}!` )})

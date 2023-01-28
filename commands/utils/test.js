@@ -4,8 +4,5 @@ module.exports = {
     description: 'Command test!' ,
     run: (client,message,args) => {
         message.channel.send('Yay!');
-    },
-    runSlash: (client,interaction) => {
-        interaction.reply('Yay!');
     }
 };
