@@ -4,7 +4,6 @@ const dotenv = require('dotenv'); dotenv.config();
 const client = new Client({intents: [
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildBans,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
 ]});
