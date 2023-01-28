@@ -3,7 +3,7 @@ const prefix = '!';
 module.exports = {
     name: "messageCreate",
     once: false,
-    execute(Oni, message){
+    execute(client, message){
         //ignore if sent by the bot
        if(message.author.bot) return;
 
@@ -17,8 +17,8 @@ module.exports = {
        const cmdName = args.shift().toLowerCase();
        if (cmdName.length == 0) return;
 
-       let cmd = Oni.commands.get(cmdName);
+       let cmd = client.commands.get(cmdName);
        //if cmd declared, execute
-       if (cmd) cmd.run(Oni, message, args);
+       if (cmd) cmd.run(client, message, args);
     }
 }

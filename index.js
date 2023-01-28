@@ -1,7 +1,7 @@
 const { Client,GatewayIntentBits,Collection } = require('discord.js');
 const dotenv = require('dotenv'); dotenv.config();
 
-const Oni = new Client({intents: [
+const client = new Client({intents: [
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildBans,
@@ -9,12 +9,12 @@ const Oni = new Client({intents: [
     GatewayIntentBits.MessageContent,
 ]});
 
-//require('./utils/handlers/EventUtil')(Oni);
-//require('./utils/handlers/CommandUtil')(Oni);
-['CommandUtil','EventUtil'].forEach(handler => {require(`./utils/handlers/${handler}`)(Oni)});
+//require('./utils/handlers/EventUtil')(client);
+//require('./utils/handlers/CommandUtil')(client);
+['CommandUtil','EventUtil'].forEach(handler => {require(`./utils/handlers/${handler}`)(client)});
 
-Oni.commands = new Collection();
+client.commands = new Collection();
 
 
   
-Oni.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN);
