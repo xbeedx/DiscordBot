@@ -1,3 +1,4 @@
+//Bot ready and initialized
 module.exports = {
     name: 'ready',
     once: true,

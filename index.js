@@ -15,6 +15,10 @@ const client = new Client({intents: [
 
 client.commands = new Collection();
 
+//logs
+process.on('exit', code => {console.log(`process stopped with the code : ${code}!` )})
+process.on('uncaughtException', (err, origin)=> { console.log(`UNCAUGHT_EXCEPTION: ${err}`, `Origin: ${origin} `)});
+process.on('unhandledRejection', (reason, promise)=> {console.log(`UNHANDLED_REJECTION: ${reason}\n-----\n`,promise)});
+process.on('warning', (...args)=> console.log(...args));
 
-  
 client.login(process.env.DISCORD_TOKEN);
