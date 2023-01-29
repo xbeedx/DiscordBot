@@ -26,4 +26,24 @@ process.on('warning', (...args)=> console.log(...args));
 mongoose.set("strictQuery",false);
 mongoose.connect(process.env.DATABASE_URI).then(()=> {console.log('client is connected to the database');}).catch(err=>{console.log(err);});
 
+//load created commands
+const fs = require('fs');
+fs.readFile('./commands/utils/commands.json', 'utf-8', (err, data) => {
+    if (err) throw err;
+    const commands = JSON.parse(data);
+    commands.forEach((command) => {
+        client.commands.set(command.name, {
+            name: command.name,
+            run: (client, message, args) => {
+            if (message.content.substring(1) === command.name) {
+                message.channel.send(command.reply);
+            }
+            },
+        });
+        console.log(`Command loaded: ${command.name}, reply: ${command.reply}`);
+    });
+  });
+
+
 client.login(process.env.DISCORD_TOKEN);
+

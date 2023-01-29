@@ -1,18 +1,61 @@
 const { EmbedBuilder } = require('discord.js');
+const fs = require('fs');
 module.exports = {
     name: "createcommand",
-    description: 'Command createCommand!' ,
-    run: (client,message,args) => {
-        if(!args[1])
-            return console.log('not enough args');
+    description: 'create a ! command!' ,
+    options: [
+        {
+            name: 'command',
+            description: 'enter the command\'s name (do not include the !)',
+            type: 3,
+            required: true
+        }, 
+        {
+            name: 'reply',
+            description: 'enter the reply to send',
+            type: 3,
+            required: true
+        }
+    ],
+    runSlash: (client,interaction) => {
+        const command = interaction.options.getString('command');
 
-        const mssg = args[1];
-        
-        client.commands.set(args[0],module.exports = { 
-            name:`${args[0]}`,
-            run: (client,message,args)=>{
-                message.channel.send(`${mssg}`)
-            }  
+        let commandsArray;
+
+        try {
+            const fileContents = fs.readFileSync('./commands/utils/commands.json');
+            commandsArray = JSON.parse(fileContents);
+        } catch (error) {
+            commandsArray = [];
+        }
+
+        let exit = false;
+        commandsArray.forEach((data) => {
+            if(data.name==command) {
+                exit=true;
+            }
         });
+
+        if(exit) 
+            interaction.reply(`Command \`${command}\` already exists.`);
+        else {
+            client.commands.set(command, {
+                name: command,
+                run: (client, message, args) => {
+                if (message.content.substring(1) === command) {
+                    message.channel.send(interaction.options.getString('reply'));
+                }
+                },
+            });
+            
+            interaction.reply(`Command created.\ntype !\`${interaction.options.getString('command')}\`\nto get \`${interaction.options.getString('reply')}\``);
+    
+            //add created command to commands.json
+            commandsArray.push({
+                name: command,
+                reply: interaction.options.getString("reply"),
+            });
+            fs.writeFileSync('./commands/utils/commands.json', JSON.stringify(commandsArray));
+        }
     }
 };

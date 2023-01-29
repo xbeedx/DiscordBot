@@ -15,10 +15,13 @@ module.exports = {
 
        //name cmd
        const cmdName = args.shift().toLowerCase();
-       if (cmdName.length == 0) return;
+       const cmdName2 = cmdName + " " + args.join(" ");
+       if (cmdName2.length == 0) return;
 
-       let cmd = client.commands.get(cmdName);
        //if cmd declared, execute
-       if (cmd) cmd.run(client, message, args);
+       if (client.commands.get(cmdName2)) 
+            client.commands.get(cmdName2).run(client, message, args);
+        else  if (client.commands.get(cmdName)) 
+            client.commands.get(cmdName).run(client, message, args);
     }
 }
