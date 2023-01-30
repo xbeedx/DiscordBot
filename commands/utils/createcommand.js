@@ -48,7 +48,7 @@ module.exports = {
                 },
             });
             
-            interaction.reply(`Command created.\ntype !\`${interaction.options.getString('command')}\`\nto get \`${interaction.options.getString('reply')}\``);
+            interaction.reply(`Command created.\ntype \`!${interaction.options.getString('command')}\`\nto get \`${interaction.options.getString('reply')}\``);
     
             //add created command to commands.json
             commandsArray.push({
