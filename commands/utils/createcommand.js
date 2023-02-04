@@ -17,7 +17,7 @@ module.exports = {
             required: true
         }
     ],
-    runSlash: (client,interaction) => {
+    runSlash(client,interaction){
         const command = interaction.options.getString('command');
 
         let commandsArray;

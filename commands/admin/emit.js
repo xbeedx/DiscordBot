@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: "emit",
     description: 'emit a chosen event' ,
-    run: (client,message,args) => {
+    run(client,message,args){
         if(!args[0] || !args[0].match(/^(guildMemberAdd|guildMemberRemove)$/)) return message.reply('please enter valid argument (\`guildMemberAdd\`/\`guildMemberRemove\`)');
         if(args[0]=='guildMemberAdd') {
             client.emit('guildMemberAdd',message.member);
@@ -31,7 +31,7 @@ module.exports = {
             ]
         }
     ],
-    runSlash: (client,interaction) => {
+    runSlash(client,interaction){
         const eventChoices = interaction.options.getString('event');
         if(eventChoices == 'guildMemberAdd'){
             client.emit('guildMemberAdd', interaction.member);
