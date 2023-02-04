@@ -1,23 +1,15 @@
-const { EmbedBuilder, Formatters } = require('discord.js');
-const dayjs = require('dayjs');
+const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'guildMemberAdd',
     once: false,
     async execute(client, member) {
 
-        //<t::f>
-        const accCreationTS = dayjs(member.user.createdTimestamp).unix(); 
-        //<t::R>
-        const relativeAccCreationTS = dayjs(member.user.createdTimestamp).unix(); 
-        const JoinedTS = dayjs(member.joinedTimestamp).unix();
-        const relativeJoinedTS = dayjs(member.joinedTimestamp).unix();
-
         const embed = new EmbedBuilder()
             .setAuthor({name:`${member.user.tag} (${member.id})`, iconURL:member.user.displayAvatarURL()}) //.user.displayAvatarURL: avatar user, .avatarURL: avatar server 
             .setColor('Green')
             .setDescription(`± UserName: ${member}
-            ± Created: <t:${accCreationTS}:f> (<t:${relativeAccCreationTS}:R>)
-            ± Joined: <t:${JoinedTS}:f> (<t:${relativeJoinedTS}:R>)
+            ± Created: <t:${parseInt(member.user.createdTimestamp/1000)}:f> (<t:${parseInt(member.user.createdTimestamp/1000)}:R>)
+            ± Joined: <t:${parseInt(member.joinedTimestamp/1000)}:f> (<t:${parseInt(member.joinedTimestamp/1000)}:R>)
             `)
             .setTimestamp()
             .setFooter({text:`User joined`});

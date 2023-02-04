@@ -1,26 +1,17 @@
 const { EmbedBuilder } = require('discord.js');
-const dayjs = require('dayjs');
 module.exports = {
     name: 'guildMemberRemove',
     once: false,
     async execute(client, member) {
 
-        //<t::f>
-        const accCreationTS = dayjs(member.user.createdTimestamp).unix(); 
-        //<t::R>
-        const relativeAccCreationTS = dayjs(member.user.createdTimestamp).unix(); 
-        const joinedTS = dayjs(member.joinedTimestamp).unix();
-        const relativeJoinedTS = dayjs(member.joinedTimestamp).unix();
-        const leftTS = dayjs().unix();
-        const relativeLeftTS = dayjs().unix();
-
         const embed = new EmbedBuilder()
             .setAuthor({name:`${member.user.tag} (${member.id})`, iconURL:member.user.displayAvatarURL()}) //.user.displayAvatarURL: avatar user, .avatarURL: avatar server 
             .setColor('Red')
             .setDescription(`± UserName: ${member.displayName}
-            ± Created: <t:${accCreationTS}:f> (<t:${relativeAccCreationTS}:R>)
-            ± Joined: <t:${joinedTS}:f> (<t:${relativeJoinedTS}:R>)
-            ± Left: <t:${leftTS}:f> (<t:${relativeLeftTS}:R>)
+            
+            ± Created: <t:${parseInt(member.user.createdTimestamp/1000)}:f> (<t:${parseInt(member.user.createdTimestamp/1000)}:R>)
+            ± Joined: <t:${parseInt(member.joinedTimestamp/1000)}:f> (<t:${parseInt(member.joinedTimestamp/1000)}:R>)
+            ± Left: <t:${parseInt(Date.now()/1000)}:f> (<t:${parseInt(Date.now()/1000)}:R>)
             `)
             .setTimestamp()
             .setFooter({text:`User left`});
