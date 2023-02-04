@@ -7,13 +7,13 @@ module.exports = async client => {
         const cmd = require(cmdFile);
 
         //Stop if no name or description 
-        if(!cmd.name || !cmd.description) 
+        if(!cmd.name || (!cmd.description && cmd.type != 2)) 
             return console.log(`-----\ command not loaded: no name and/or description \n -> File: ${cmdFile}\n-----`);
 
         if(cmd.run){
             client.commands.set(cmd.name,cmd);
         }
-        if(cmd.runSlash) {
+        if(cmd.runInteraction) {
             client.commandsSlash.set(cmd.name,cmd);
         }
 

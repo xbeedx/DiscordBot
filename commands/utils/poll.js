@@ -3,7 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'poll',
     description: 'post your own poll' ,
-    //runSlash option(s)
+    //runInteraction option(s)
     options: [
         {
             name: 'title',
@@ -18,7 +18,7 @@ module.exports = {
             required: true,
         }
     ],
-    async runSlash(client,interaction) {
+    async runInteraction(client,interaction) {
         const pollTitle = interaction.options.getString('title');
         const pollContent = interaction.options.getString('content');
 
