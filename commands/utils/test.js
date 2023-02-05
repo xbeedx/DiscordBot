@@ -1,8 +1,14 @@
 const { EmbedBuilder } = require('discord.js');
+
 module.exports = {
     name: "test",
     description: 'Command test!' ,
-    run(client,message,args){
-        message.channel.send('Yay!');
+    async run(client,message,args){
+        const tryTest = await message.channel.send("we try to test... a moment!");
+        
+        const embed = new EmbedBuilder()
+        .setTitle('Test');
+
+        tryTest.edit({ content: ' ', embeds: [embed]});
     }
 };
